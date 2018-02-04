@@ -16,11 +16,22 @@ namespace Hangman
             var submittedAnswer = Console.ReadLine();
             Console.Clear();
             Console.WriteLine("Have a guess mofo");
-            var guessesRemaining = 10;
+            var guessesRemaining = 0;
+
+            List<string> hangmanPieces = new List<string>();
+            hangmanPieces.Add("");
+            hangmanPieces.Add("_____\n\n\n");
+            hangmanPieces.Add("_____\n|\n|\n|");
+            hangmanPieces.Add("_____\n|   O\n|\n|");
+            hangmanPieces.Add("_____\n|   O\n|   |\n|");
+            hangmanPieces.Add("_____\n|   O\n|  /|\n|");
+            hangmanPieces.Add("_____\n|   O\n|  /|\\\n|");
+            hangmanPieces.Add("_____\n|   O\n|  /|\\\n|  /");
+            hangmanPieces.Add("_____\n|   O\n|  /|\\\n|  / \\");
 
             answer.initiateCharArrays(submittedAnswer);
 
-            while (guessesRemaining > 0)
+            while (guessesRemaining < 8)
             {
 
                 answer.EvaluateGuess(guesses.correctGuesses);
@@ -33,18 +44,19 @@ namespace Hangman
                 {
                     guesses.addCorrectGuess(guess);
                     Console.WriteLine("Whoop! Have another guess mofo");
-                    Console.WriteLine($"You have {guessesRemaining} gyesses remaining");                    
+                    Console.WriteLine(hangmanPieces[guessesRemaining]);
                 }
                 else
                 {
-                    guessesRemaining -= 1;
+                    guessesRemaining += 1;
                     Console.WriteLine("Oops bummer! Have another guess mofo");
-                    Console.WriteLine($"You have {guessesRemaining} guesses remaining");              
+                    Console.WriteLine(hangmanPieces[guessesRemaining]);         
                 }
 
             }
 
-            Console.Clear();
+            Console.WriteLine("GAME OVER :)");
+         
 
             while (Console.ReadKey().Key != ConsoleKey.End) { };
         }

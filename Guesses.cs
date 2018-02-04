@@ -10,7 +10,7 @@ namespace Hangman
     {
              
         public bool isCorrectAnswer { get; set; }
-        public List<string> correctGuesses = new List<string>();
+        public List<string> correctGuesses = new List<string>();    
 
         public bool EvaluateGuess(string letter,  string answer)
         {
